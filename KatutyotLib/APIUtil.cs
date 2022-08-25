@@ -14,15 +14,15 @@ namespace KatutyotLib
         public class APIUtil
         {
 
-            private const string APIURL = "http://api.digitransit.fi/geocoding/v1";
-            public List<Kaupunginosa> Kaupunginosat()
+            private const string APIURL = "https://kartta.hel.fi/ws/geoserver/avoindata/wfs?request=GetCapabilities";
+            public List<Tietyö> Tietyöt()
             {
                 using HttpClient client = new HttpClient(GetZipHandler());
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 client.DefaultRequestHeaders.Add("accept-encoding", "gzip");
                 var response = client.GetAsync($"{APIURL}/metadata/stations").Result;
                 string json = response.Content.ReadAsStringAsync().Result;
-                List<Kaupunginosa> res = JsonConvert.DeserializeObject<List<Kaupunginosa>>(json); //NewtonSoftin serialisointi
+                List<Tietyö> res = JsonConvert.DeserializeObject<List<Tietyö>>(json); //NewtonSoftin serialisointi
                                                                                                       //List<Liikennepaikka> res = JsonSerializer.Deserialize<List<Liikennepaikka>>(json);  // Core:n oma
                 return res;
             }

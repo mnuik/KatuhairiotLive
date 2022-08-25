@@ -1,8 +1,106 @@
-﻿@{
+﻿@model IEnumerable<KatutyotLib.Models.Tietyö>
+
+@{
     ViewData["Title"] = "Home Page";
+   
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Töttöröö</h1>
+    <p>@ViewBag.Result</p>
+
+    <p>
+        <a asp-action="Create">Hae osoitteella tai kaupunginosan nimellä:</a>
+    </p>
+    @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+    {
+        <label for="Kaupunginosat">Kaupunginosat</label>
+        <select name="Kaupunginosat" id="Kaupunginosat">
+            <option value=""></option>
+          @* HOX  Tähän alle luettelo kaupunginosista!*@
+            <option value="lastentaikuus">Lasten taikuus</option>
+            <option value="aikuistentaikuus">Aikuisten taikuus</option>
+            <option value="kaikille">Kaikille</option>
+
+        </select>
+        <text>Lokaatio</text>  <select name="Lokaatio" id="Lokaatio">
+            <option value=""></option>
+            <option value="Helsinki">Helsinki</option>
+            <option value="Espoo">Espoo</option>
+            <option value="Vantaa">Vantaa</option>
+
+        </select>
+        <label for="Haku">Osoitehaku</label>  @Html.TextBox("Haku") <input type="submit"
+                                                                                name="submit"
+                                                                                value="Haku">
+    }
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.kaupunginosa)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.osoite)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tyon_tarkoitus)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tyo_alkaa)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tyo_paattyy)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.status)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tyon_suorittaja)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        @*<tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.kaupunginosa)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.osoite)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.tyon_tarkoitus)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.tyo_alkaa)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.tyo_paattyy)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.status)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.tyon_suorittaja)
+                    </th>
+                    <th></th>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.TaikuriId">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.TaikuriId">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.TaikuriId">Delete</a>
+                        </td>
+                </tr>
+            }
+        </tbody>*@
+    </table>
 </div>

@@ -1,4 +1,5 @@
 ﻿using KatuhairiotLive.Models;
+using KatutyotLib.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
@@ -29,6 +30,21 @@ namespace KatuhairiotLive.Controllers
 
         public IActionResult Privacy()
         {
+            return View();
+        }
+
+        public IActionResult HairionNimi(string paikka)
+        {
+            List<Tietyö> homma;
+            KatutyotLib.APIUtil hairiot = new KatutyotLib.APIUtil();
+            homma = hairiot.Tietyöt();
+
+            var tulos =
+                (from h in homma
+                 where h.kaupunginosa.ToLower() == paikka.ToLower()
+                 select h.kaupunginosa).FirstOrDefault();
+
+            ViewBag.Result = tulos;
             return View();
         }
 
