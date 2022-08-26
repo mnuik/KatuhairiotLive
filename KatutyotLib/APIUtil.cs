@@ -14,7 +14,7 @@ namespace KatutyotLib
         public class APIUtil
         {
 
-            private const string APIURL = "https://kartta.hel.fi/ws/geoserver/avoindata/wfs?request=GetCapabilities";
+            public const string APIURL = "https://kartta.hel.fi/ws/geoserver/avoindata/wfs?request=GetCapabilities";
             public List<Tietyö> Tietyöt()
             {
                 using HttpClient client = new HttpClient(GetZipHandler());

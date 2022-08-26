@@ -1,8 +1,12 @@
 ﻿using KatuhairiotLive.Models;
+using KatutyotLib;
 using KatutyotLib.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System.Diagnostics;
+using System.Net;
+using System.Net.Http.Headers;
 
 namespace KatuhairiotLive.Controllers
 {
@@ -31,6 +35,28 @@ namespace KatuhairiotLive.Controllers
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        public IActionResult Lista()
+        {
+            using HttpClient client = new HttpClient(GetZipHandler());
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Add("accept-encoding", "gzip");
+            var response = client.GetAsync($"{APIUtil.APIURL}/metadata/stations").Result;
+            string json = response.Content.ReadAsStringAsync().Result;
+            List<Tietyö> res = JsonConvert.DeserializeObject<List<Tietyö>>(json); //NewtonSoftin serialisointi
+                                                                                  //List<Liikennepaikka> res = JsonSerializer.Deserialize<List<Liikennepaikka>>(json);  // Core:n oma
+            ViewBag.Result = res;
+            return View();
+
+        }
+
+        private static HttpClientHandler GetZipHandler()
+        {
+            return new HttpClientHandler()
+            {
+                AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
+            };
         }
 
         public IActionResult HairionNimi(string paikka)
