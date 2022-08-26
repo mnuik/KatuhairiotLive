@@ -1,29 +1,22 @@
 ﻿@model IEnumerable<KatutyotLib.Models.Tietyö>
-
+@ViewBag.Result;
 @{
     ViewData["Title"] = "Home Page";
-   
+    
 }
 
 <div class="text-center">
-    <h1 class="display-4">Töttöröö</h1>
-    <p>@ViewBag.Result</p>
+    <h1 class="display-4">Katuhäiriö-Live Helsinki</h1>
+    <p>Koko kaupungin tietyöt ja muut kulkuväylien häiriöt juuri nyt</p>
 
     <p>
         <a asp-action="Create">Hae osoitteella tai kaupunginosan nimellä:</a>
     </p>
     @using (Html.BeginForm("Index", "Home", FormMethod.Get))
     {
-        <label for="Kaupunginosat">Kaupunginosat</label>
-        <select name="Kaupunginosat" id="Kaupunginosat">
-            <option value=""></option>
-          @* HOX  Tähän alle luettelo kaupunginosista!*@
-            <option value="lastentaikuus">Lasten taikuus</option>
-            <option value="aikuistentaikuus">Aikuisten taikuus</option>
-            <option value="kaikille">Kaikille</option>
-
-        </select>
-        <text>Lokaatio</text>  <select name="Lokaatio" id="Lokaatio">
+  
+        @*HOX! Tähän alle luettelo kaupunginosista*@
+        <label for="Kaupunginosa">Kaupunginosa</label> <select name="Kaupunginosa" id="Kaupunginosa">
             <option value=""></option>
             <option value="Helsinki">Helsinki</option>
             <option value="Espoo">Espoo</option>
