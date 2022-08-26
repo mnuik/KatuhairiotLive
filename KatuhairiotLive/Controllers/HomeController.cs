@@ -1,4 +1,5 @@
-﻿using KatuhairiotLive.Models;
+﻿using KatuhairiotLive.Helpers;
+using KatuhairiotLive.Models;
 using KatutyotLib;
 using KatutyotLib.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -7,6 +8,7 @@ using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Net;
 using System.Net.Http.Headers;
+using System.Xml.Serialization;
 
 namespace KatuhairiotLive.Controllers
 {
@@ -37,19 +39,38 @@ namespace KatuhairiotLive.Controllers
             return View();
         }
 
+        // Lista() w/XML serializer:
         public IActionResult Lista()
         {
             using HttpClient client = new HttpClient(GetZipHandler());
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             client.DefaultRequestHeaders.Add("accept-encoding", "gzip");
-            var response = client.GetAsync($"{APIUtil.APIURL}/metadata/stations").Result;
-            string json = response.Content.ReadAsStringAsync().Result;
-            List<Tietyö> res = JsonConvert.DeserializeObject<List<Tietyö>>(json); //NewtonSoftin serialisointi
-                                                                                  //List<Liikennepaikka> res = JsonSerializer.Deserialize<List<Liikennepaikka>>(json);  // Core:n oma
-            ViewBag.Result = res;
+
+            var apiXML = ApiWebRequestHelper.GetXmlRequest<Tietyö>("https://kartta.hel.fi/ws/geoserver/avoindata/wfs?request=GetCapabilities");
+
+            ViewBag.Result = apiXML;
             return View();
 
         }
+
+        /* Lista() w/JSON serializer:*/
+
+        //public IActionResult Lista()
+        //{
+        //    using HttpClient client = new HttpClient(GetZipHandler());
+        //    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        //    client.DefaultRequestHeaders.Add("accept-encoding", "gzip");
+        //    var response = client.GetAsync($"{APIUtil.APIURL}").Result;
+        //    string json = response.Content.ReadAsStringAsync().Result;
+
+
+
+        //    List<Tietyö> res = JsonConvert.DeserializeObject<List<Tietyö>>(json); //NewtonSoftin serialisointi
+        //                                                                          //List<Liikennepaikka> res = JsonSerializer.Deserialize<List<Liikennepaikka>>(json);  // Core:n oma
+        //    ViewBag.Result = res;
+        //    return View();
+
+        // }
 
         private static HttpClientHandler GetZipHandler()
         {
