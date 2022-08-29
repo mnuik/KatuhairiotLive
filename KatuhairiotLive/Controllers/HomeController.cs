@@ -8,7 +8,7 @@ namespace KatuhairiotLive.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        public readonly HkarttaDBContext db;
+        //public readonly HkarttaDBContext db;
         public readonly IConfiguration _config;
 
         public HomeController(ILogger<HomeController> logger, IConfiguration config)
@@ -16,9 +16,9 @@ namespace KatuhairiotLive.Controllers
             _logger = logger;
             _config = config;
 
-            var optionsBuilder = new DbContextOptionsBuilder<HkarttaDBContext>();
-            optionsBuilder.UseSqlServer(_config.GetConnectionString("HkarttaDB"));
-            db = new HkarttaDBContext(optionsBuilder.Options);
+            //var optionsBuilder = new DbContextOptionsBuilder<HkarttaDBContext>();
+            //optionsBuilder.UseSqlServer(_config.GetConnectionString("HkarttaDB"));
+            //db = new HkarttaDBContext(optionsBuilder.Options);
         }
 
         public IActionResult Index()
