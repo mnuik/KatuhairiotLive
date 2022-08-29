@@ -20,7 +20,7 @@ namespace KatutyotLib
                 using HttpClient client = new HttpClient(GetZipHandler());
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 client.DefaultRequestHeaders.Add("accept-encoding", "gzip");
-                var response = client.GetAsync($"{APIURL}/metadata/stations").Result;
+                var response = client.GetAsync($"{APIURL}/avoindata/Kaivuilmoitus_alue").Result;
                 string json = response.Content.ReadAsStringAsync().Result;
                 List<Tietyö> res = JsonConvert.DeserializeObject<List<Tietyö>>(json); //NewtonSoftin serialisointi
                                                                                                       //List<Liikennepaikka> res = JsonSerializer.Deserialize<List<Liikennepaikka>>(json);  // Core:n oma

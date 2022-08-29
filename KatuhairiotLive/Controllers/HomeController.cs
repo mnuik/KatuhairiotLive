@@ -3,6 +3,9 @@ using KatutyotLib.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using System.Net;
+using System.Net.Http.Headers;
+using System.Text.Json;
 
 namespace KatuhairiotLive.Controllers
 {
@@ -22,6 +25,7 @@ namespace KatuhairiotLive.Controllers
             db = new HkarttaDBContext(optionsBuilder.Options);
 
         }
+        private const string APIURL = "https://kartta.hel.fi/ws/geoserver/avoindata/wfs?request=GetCapabilities";
 
         public IActionResult Index()
         {
@@ -31,6 +35,26 @@ namespace KatuhairiotLive.Controllers
         public IActionResult Privacy()
         {
             return View();
+        }
+        public IActionResult List()
+        {
+            using HttpClient client = new HttpClient(GetZipHandler());
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Add("accept-encoding", "gzip");
+            var response = client.GetAsync($"{APIURL}").Result;
+            string json = response.Content.ReadAsStringAsync().Result;
+            //List<Tietyö> res = JsonConvert.DeserializeObject<List<Liikennepaikka>>(json); //NewtonSoftin serialisointi
+            List<Tietyö> res = JsonSerializer.Deserialize<List<Tietyö>>(json);  // Core:n oma
+
+            ViewBag.Testi = res;
+            return View();
+        }
+        private static HttpClientHandler GetZipHandler()
+        {
+            return new HttpClientHandler()
+            {
+                AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
+            };
         }
 
         public IActionResult HairionNimi(string paikka)
