@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<KatutyotLib.Models.Tietyö>
 
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Index";
     
 }
 
 <div class="text-center">
     <h1 class="display-4">Katuhäiriö-Live Helsinki</h1>
-    <p>Koko kaupungin tietyöt ja muut kulkuväylien häiriöt juuri nyt</p>
-    <p>@ViewBag.Result</p>
+@*    <p>Koko kaupungin tietyöt ja muut kulkuväylien häiriöt juuri nyt</p>*@
+   
     <p>
         <a asp-action="Create">Hae osoitteella tai kaupunginosan nimellä:</a>
     </p>
@@ -23,9 +23,9 @@
             <option value="Vantaa">Vantaa</option>
 
         </select>
-        <label for="Haku">Osoitehaku</label>  @Html.TextBox("Haku") <input type="submit"
+        <label for="Haku">Osoitehaku</label>  @Html.TextBox("haku") <input type="submit"
                                                                                 name="submit"
-                                                                                value="Haku">
+                                                                                value="haku">
     }
 
     <table class="table">
@@ -58,7 +58,7 @@
                 <th></th>
             </tr>
         </thead>
-        @*<tbody>
+      @* <tbody>
             @foreach (var item in Model)
             {
                 <tr>
@@ -87,13 +87,15 @@
                         @Html.DisplayNameFor(model => model.tyon_suorittaja)
                     </th>
                     <th></th>
-                    <td>
+             @*       <td>
                         <a asp-action="Edit" asp-route-id="@item.TaikuriId">Edit</a> |
                         <a asp-action="Details" asp-route-id="@item.TaikuriId">Details</a> |
                             <a asp-action="Delete" asp-route-id="@item.TaikuriId">Delete</a>
                         </td>
                 </tr>
             }
-        </tbody>*@
+        </tbody> *@
     </table>
+
+    
 </div>

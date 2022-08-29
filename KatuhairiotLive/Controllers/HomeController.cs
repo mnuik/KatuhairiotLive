@@ -29,10 +29,10 @@ namespace KatuhairiotLive.Controllers
 
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
+        //public IActionResult Index()
+        //{
+        //    return View();
+        //}
 
         public IActionResult Privacy()
         {
@@ -43,12 +43,47 @@ namespace KatuhairiotLive.Controllers
         public IActionResult Lista()
         {
             using HttpClient client = new HttpClient(GetZipHandler());
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/xml"));
             client.DefaultRequestHeaders.Add("accept-encoding", "gzip");
 
             var apiXML = ApiWebRequestHelper.GetXmlRequest<Tietyö>("https://kartta.hel.fi/ws/geoserver/avoindata/wfs?request=GetCapabilities");
 
             ViewBag.Result = apiXML;
+            return View();
+
+        }
+
+        // Lista() w/XML serializer 2:
+        public IActionResult Index(string haku)
+        {
+            using HttpClient client = new HttpClient(GetZipHandler());
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/xml"));
+            client.DefaultRequestHeaders.Add("accept-encoding", "gzip");
+            var apiXML = ApiWebRequestHelper.GetXmlRequest<Tietyö>("https://kartta.hel.fi/ws/geoserver/avoindata/wfs?request=GetCapabilities");
+
+            List<Tietyö> työt = new List<Tietyö>();
+            APIUtil paikka = new APIUtil();
+            työt = paikka.Tietyöt();
+
+            if (!string.IsNullOrWhiteSpace(haku))
+            {
+                foreach (var item in työt.Where(t => t.status == "(Käynnissä)"))
+                {
+                    if (item.osoite.StartsWith(haku) || item.kaupunginosa.StartsWith(haku))
+                    {
+                        Console.WriteLine($"{item.kaupunginosa}: {item.osoite}");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Ei häiriöitä tällä hetkellä");
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("joku mättää nyt");
+            }
+            
             return View();
 
         }
