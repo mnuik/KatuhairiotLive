@@ -56,10 +56,10 @@ namespace KatuhairiotLive.Controllers
         // Lista() w/XML serializer 2:
         public IActionResult Index(string haku)
         {
-            using HttpClient client = new HttpClient(GetZipHandler());
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/xml"));
-            client.DefaultRequestHeaders.Add("accept-encoding", "gzip");
-            var apiXML = ApiWebRequestHelper.GetXmlRequest<Tietyö>("https://kartta.hel.fi/ws/geoserver/avoindata/wfs?request=GetCapabilities");
+            //using HttpClient client = new HttpClient(GetZipHandler());
+            //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/xml"));
+            //client.DefaultRequestHeaders.Add("accept-encoding", "gzip");
+            //var apiJson = ApiWebRequestHelper.GetJsonRequest<Tietyö>("https://kartta.hel.fi/ws/geoserver/avoindata/wfs?request=GetCapabilities");
 
             List<Tietyö> työt = new List<Tietyö>();
             APIUtil paikka = new APIUtil();
