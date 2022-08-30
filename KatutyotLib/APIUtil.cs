@@ -30,7 +30,7 @@ namespace KatutyotLib
 
         //    return result;
         //}
-        public List<Tietyö> Tietyöt()
+        public Data Tietyöt()
         {
             
             using HttpClient client = new HttpClient(GetZipHandler());
@@ -43,7 +43,8 @@ namespace KatutyotLib
 
             var options = new JsonSerializerOptions();
 
-            List<Tietyö> res = JsonConvert.DeserializeObject<List<Tietyö>>(json);   //NewtonSoftin serialisointi
+           Data res = JsonConvert.DeserializeObject<Data>(json);
+            //List<Tietyö> res = JsonConvert.DeserializeObject<List<Tietyö>>(json);   //NewtonSoftin serialisointi
                                                                                     // List<Tietyö> res = JsonSerializer.Deserialize<List<Tietyö>>(json);  // Core:n oma
             return res;
 

@@ -63,7 +63,8 @@ namespace KatuhairiotLive.Controllers
 
             List<Tietyö> työt = new List<Tietyö>();
             APIUtil paikka = new APIUtil();
-            työt = paikka.Tietyöt();
+            //työt = paikka.Tietyöt();
+            Data crs = paikka.Tietyöt();
 
             if (!string.IsNullOrWhiteSpace(haku))
             {
@@ -115,20 +116,20 @@ namespace KatuhairiotLive.Controllers
             };
         }
 
-        public IActionResult HairionNimi(string paikka)
-        {
-            List<Tietyö> homma;
-            KatutyotLib.APIUtil hairiot = new KatutyotLib.APIUtil();
-            homma = hairiot.Tietyöt();
+        //public IActionResult HairionNimi(string paikka)
+        //{
+        //    List<Tietyö> homma;
+        //    KatutyotLib.APIUtil hairiot = new KatutyotLib.APIUtil();
+        //    homma = hairiot.Tietyöt();
 
-            var tulos =
-                (from h in homma
-                 where h.kaupunginosa.ToLower() == paikka.ToLower()
-                 select h.kaupunginosa).FirstOrDefault();
+        //    var tulos =
+        //        (from h in homma
+        //         where h.kaupunginosa.ToLower() == paikka.ToLower()
+        //         select h.kaupunginosa).FirstOrDefault();
 
-            ViewBag.Result = tulos;
-            return View();
-        }
+        //    ViewBag.Result = tulos;
+        //    return View();
+        //}
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
