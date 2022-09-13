@@ -1,71 +1,66 @@
-﻿@*<section class="vh-100" style="background-image: url(https://img.freepik.com/premium-vector/construction-site-building-house-real-estate-business-vector-illustration_333239-381.jpg?w=1380);">*@
-<div class="container-fluid">
-    <div class="row flex-nowrap">
-        <br /><br />
-        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
-            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-                <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                    
-                    <span class="fs-5 d-none d-sm-inline" style="font-family:Kiona">Valikko</span>
-          </a>
-                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link align-middle px-0" style="color: whitesmoke">
-                            <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Etusivu</span>
-                        </a>
-                    </li>
-               @*     <li>
-                        <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Kaupunginosat</span> </a>
-                            <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
-                            <li class="w-100">
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Helsinki</span> </a>
-                            </li>
-                            
-                        </ul>
-                    </li>*@
-                    <li>
-                        <a href="#" class="nav-link px-0 align-middle" style="color:whitesmoke">
-                            <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Linkkejä</span> </a>
-                    </li>
-                    <br />
+﻿<!DOCTYPE html>
+<html>
+    <head>
+    <link rel="stylesheet" href="site.css">
+</head>
+<body>
+    <div class="sidebar">
+        <a class="active" href="#etusivu">KATUHÄIRIÖLIVE</a>
+        <a href="#kaupunginosat">Kaupunginosat HKI</a>
+        <a href="#linkkejä">Linkkejä</a>
+        <a href="#ukk">UKK</a>
+  
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                            <ul class="navbar-nav flex-grow-1">
-                                <li class="nav-item">
-                                    <a class="nav-link text-white" asp-area="" asp-controller="Account" asp-action="UserProfile">Profile</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-white" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
-                                </li>
-                            </ul>
-                        </div>
+                        <br />
+            <a href="#UserProfile">Omat tietoni</a>
+            <a href="#Logout"><strong>Kirjaudu ulos</strong></a>
+
                     }
                     else
                     {
-                        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                            <ul class="navbar-nav flex-grow-1">
-                                <li class="nav-item">
-                                    <a class="nav-link text-white" asp-area="" asp-controller="Account" asp-action="Login" style="font-family: Kiona">Kirjaudu sisään</a>
-                                </li>
-                            </ul>
-                        </div>
+                       
+                <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Login"><strong>Kirjaudu sisään</strong></a>
+                       
                     }
-                  
-                </ul>
-            </div>
-        </div>
-        <div class="col py-3">
-            <iframe width="850" height="600" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://learngis2.maps.arcgis.com/apps/mapviewer/index.html?webmap=ce0a0d157fb9466c83867bbdf606114c" style="border: 1px solid black"></iframe><br />
-            <small><a href="https://learngis2.maps.arcgis.com/apps/mapviewer/index.html?webmap=ce0a0d157fb9466c83867bbdf606114c" style="font-family: kiona; color: dimgray">Suurenna kartta koko näyttöön</a></small>
-        </div>
     </div>
-</div>
-</section>
+   @* //bootstrap
+       
+   {
+
+    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+        <ul class="navbar-nav flex-grow-1">
+            <li class="nav-item">
+                <a class="nav-link text-white" asp-area="" asp-controller="Account" asp-action="UserProfile">Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
+            </li>
+        </ul>
+    </div>
+    }
+    else
+    {
+    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+        <ul class="navbar-nav flex-grow-1">
+            <li class="nav-item">
+                <a class="nav-link text-white" asp-area="" asp-controller="Account" asp-action="Login">Kirjaudu sisään</a>
+            </li>
+        </ul>
+    </div>
+    }*@
+                  
+             
+        <div class="content">
+            <iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://learngis2.maps.arcgis.com/apps/mapviewer/index.html?webmap=ce0a0d157fb9466c83867bbdf606114c" style="border: 1px solid black"></iframe><br />
+            <small><a href="https://learngis2.maps.arcgis.com/apps/mapviewer/index.html?webmap=ce0a0d157fb9466c83867bbdf606114c" style="color: dimgray">Suurenna kartta koko näyttöön</a></small>
+        </div>
+
+</body>
+</html>

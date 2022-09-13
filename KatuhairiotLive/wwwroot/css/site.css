@@ -1,7 +1,6 @@
 html {
   font-size: 14px;
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  color: darkgray;
+  font-family:Bahnschrift, 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 @media (min-width: 768px) {
@@ -19,4 +18,72 @@ html {
 
 body {
   margin-bottom: 60px;
+}
+.sidebar {
+    margin:20px 16px -5px 16px;
+    
+    padding: 0;
+    min-width: 200px;
+    max-width:fit-content;
+    background-color: #f1f1f1;
+    position:absolute;
+    height: 50%;
+    overflow: auto;
+}
+
+    .sidebar a {
+        display: block;
+        color: black;
+        padding: 16px;
+        text-decoration: none;
+    }
+
+        .sidebar a.active {
+            background-color: #F36A20;
+            font-size:large;
+            font-weight:600;
+            color: white;
+
+        }
+
+        .sidebar a:hover:not(.active) {
+            background-color: #2E2D2C;
+            color: white;
+        }
+
+div.content {
+    margin-left: 220px;
+    padding: 20px 16px;
+    height: 1200px;
+}
+iframe {
+    min-width:100%;
+   height:50%;
+}
+
+@media screen and (max-width: 700px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+        .sidebar a {
+            float: left;
+        }
+
+    div.content {
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .sidebar {
+        min-width: 300px;
+    }
+    .sidebar a {
+        text-align: center;
+        float: none;
+        
+    }
 }
