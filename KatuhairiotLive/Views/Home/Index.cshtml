@@ -1,13 +1,14 @@
 ﻿<!DOCTYPE html>
 <html>
     <head>
+        <title>Etusivu | KatuhäiriöLive</title>
     <link rel="stylesheet" href="site.css">
 </head>
 <body>
     <div class="sidebar">
-        <a class="active" href="#etusivu">KATUHÄIRIÖLIVE</a>
-        <a href="#kaupunginosat">Kaupunginosat HKI</a>
-        <a href="#linkkejä">Linkkejä</a>
+        <a class="active" asp-area="" asp-controller="Home" asp-action="Index">KATUHÄIRIÖLIVE</a>
+        <a class="nav-link" asp-area="" asp-controller="Kaupunginosa" asp-action="Index">Kaupunginosat HKI</a>
+        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Linkkejä</a>
         <a href="#ukk">UKK</a>
   
                     @if (User.Identity.IsAuthenticated)
@@ -59,7 +60,7 @@
              
         <div class="content">
             <iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://learngis2.maps.arcgis.com/apps/mapviewer/index.html?webmap=ce0a0d157fb9466c83867bbdf606114c" style="border: 1px solid black"></iframe><br />
-            <small><a href="https://learngis2.maps.arcgis.com/apps/mapviewer/index.html?webmap=ce0a0d157fb9466c83867bbdf606114c" style="color: dimgray">Suurenna kartta koko näyttöön</a></small>
+            <small><a href="https://learngis2.maps.arcgis.com/apps/mapviewer/index.html?webmap=ce0a0d157fb9466c83867bbdf606114c" style="color: dimgray">Suurenna kartta</a></small>
         </div>
 
 </body>

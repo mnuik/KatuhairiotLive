@@ -1,0 +1,38 @@
+﻿
+<html>
+<head>
+    <link rel="stylesheet" href="site.css">
+    <title> Kaupunginosat | KatuhäiriöLive</title>
+</head>
+<body>
+    <div class="sidebar">
+        <a class="active" asp-area="" asp-controller="Home" asp-action="Index">KATUHÄIRIÖLIVE</a>
+        <a class="nav-link" asp-area="" asp-controller="Kaupunginosa" asp-action="Index">Kaupunginosat HKI</a>
+        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Linkkejä</a>
+        <a href="#ukk">UKK</a>
+  
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <br />
+            <a href="#UserProfile">Omat tietoni</a>
+            <a href="#Logout"><strong>Kirjaudu ulos</strong></a>
+
+                    }
+                    else
+                    {
+                       
+                <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Login"><strong>Kirjaudu sisään</strong></a>
+                       
+                    }
+    </div>
+    <div class="content">
+<h1 class="title">Tietoa kaupunginosittain</h1> 
+<h3 class="description">Kaupunkiympäristön muutokset & tapahtumat</h3>
+<br /><br />
+    <h2>Helsingin kaupunki</h2>
+
+
+ 
+    </div>
+</body>
+</html>
